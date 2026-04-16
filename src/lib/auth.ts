@@ -1,12 +1,12 @@
 import { onAuthStateChanged, signInWithEmailAndPassword, User } from "firebase/auth";
-import { auth } from "./firebase";
+import { getAuthClient } from "./firebase";
 
 export function onAuthState(cb: (user: User | null) => void) {
-  return onAuthStateChanged(auth, cb);
+  return onAuthStateChanged(getAuthClient(), cb);
 }
 
 export async function signInWithEmail(email: string, password: string) {
-  return signInWithEmailAndPassword(auth, email, password);
+  return signInWithEmailAndPassword(getAuthClient(), email, password);
 }
 
 export function isAdminEmail(email: string) {
